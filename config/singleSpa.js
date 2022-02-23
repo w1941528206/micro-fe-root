@@ -3,22 +3,6 @@ import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory({ basename: '/' });
 
-/**
- * runScript 一个promise同步方法。可以代替创建一个script标签，然后加载服务
- */
-const runScript = async (url) => {
-  // 加载css同理
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = url;
-    script.onload = resolve;
-    script.onerror = reject;
-    const firstScript = document.getElementsByTagName('script')[0];
-    console.log(firstScript, 'this is');
-    firstScript.parentNode.insertBefore(script, firstScript);
-  });
-};
-
 // 注册微前端服务
 /* 
     注册所用函数;
@@ -32,24 +16,24 @@ singleSpa.registerApplication(
   (location) => location.pathname.startsWith('/')
 );
 
-// singleSpa.registerApplication(
-//   'project01',
-//   async () => {
-//     console.log('ready');
-//     let lifeCycles = await System.import('http://localhost:8088/project01.js');
-//     console.log(lifeCycles, 'this is life');
-//   },
-//   (location) => location.pathname.startsWith('/react')
-// );
 singleSpa.registerApplication(
   'project01',
   async () => {
-    let lifeCycles = await System.import('http://localhost:8088/project01.js');
-    // let lifeCycles = await System.import('http://localhost:8089/fulllink-c2c7fb13d32497618ad8.js');
-    console.log(lifeCycles);
-    return lifeCycles;
+    let lifeCycles01 = await System.import('http://120.25.224.38/tool/tool.js');
+    console.log(lifeCycles01);
+    return lifeCycles01;
   },
-  (location) => location.pathname.startsWith('/react')
+  (location) => location.pathname.startsWith('/tool')
+);
+
+singleSpa.registerApplication(
+  'project02',
+  async () => {
+    let lifeCycles02 = await System.import('http://120.25.224.38/delve/delve.js');
+    console.log(lifeCycles02);
+    return lifeCycles02;
+  },
+  (location) => location.pathname.startsWith('/delve')
 );
 
 singleSpa.start(); // 启动

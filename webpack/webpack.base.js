@@ -17,11 +17,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: "/",
-    library: pkgJson.systemName,
-    libraryTarget: "umd"
+    filename: '[name].js',
   },
   devtool: 'source-map',
-  // externals: ['react', 'react-dom', 'single-spa', 'moment', 'lodash'],
+  // externals: ['react', 'react-dom'],
   module: {
     rules: [
       {

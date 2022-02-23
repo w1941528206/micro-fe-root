@@ -32,35 +32,36 @@ module.exports = merge(baseConfig, {
     //   paths: glob.sync(`${paths.appSrc}/**/*`, { nodir: true }),
     // }),
     new MiniCssExtractPlugin({
-      filename: '[name]-[chunkhash].css'
+      filename: '[name].css',
+      chunkFilename: '[name]-[chunkhash].css',
     }),
     // new PurgecssWebpackPlugin({
     //   paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
     // }),
-    new OptimizeCSSAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: cssnano,
-    }),
-    new StatsPlugin(
-      manifestName,
-      {
-        chunkModules: false,
-        source: true,
-        chunks: false,
-        modules: false,
-        assets: true,
-        children: false,
-        exclude: [/node_modules/],
-      },
-    ),
-    new HtmlWebpackPlugin({
-      meta: {
-        manifest: manifestName,
-      },
-      template: './public/index.html',
-      filename: 'index.html',
-      inject: 'body',
-    }),
+    // new OptimizeCSSAssetsPlugin({
+    //   assetNameRegExp: /\.css$/g,
+    //   cssProcessor: cssnano,
+    // }),
+    // new StatsPlugin(
+    //   manifestName,
+    //   {
+    //     chunkModules: false,
+    //     source: true,
+    //     chunks: false,
+    //     modules: false,
+    //     assets: true,
+    //     children: false,
+    //     exclude: [/node_modules/],
+    //   },
+    // ),
+    // new HtmlWebpackPlugin({
+    //   meta: {
+    //     manifest: manifestName,
+    //   },
+    //   template: './public/index.html',
+    //   filename: 'index.html',
+    //   inject: 'body',
+    // }),
   ],
   module: {
     rules: [
@@ -109,32 +110,11 @@ module.exports = merge(baseConfig, {
       },
     ]
   },
-  // optimization: {
-  //   runtimeChunk: true, // 为运行时代码创建一个额外的chunk 减小 entry chunk 的体积
-  //   minimize: true, // 开启最小化
-  //   minimizer: [ // 最小化 压缩
-  //     new TerserPlugin(),
-  //     new CssMinimizerPlugin()
-  //   ],
-  //   splitChunks: {
-  //     chunks: 'all',
-  //     minSize: 0,
-  //     // cacheGroups: {
-  //     //   commons: {
-  //     //     name: 'vendors',
-  //     //     chunks: 'all',
-  //     //     minChunks: 2,
-  //     //   },
-  //     // }
-  //     cacheGroups: {
-  //       vendors: { // node_modules里的代码
-  //         test: /[\\/]node_modules[\\/]/,
-  //         chunks: "all",
-  //         // name: 'vendors',
-  //         priority: 10, // 优先级
-  //         enforce: true
-  //       }
-  //     }
-  //   }
-  // }
+  optimization: {
+    minimize: true, // 开启最小化
+    minimizer: [ // 最小化 压缩
+      new TerserPlugin(),
+      new CssMinimizerPlugin()
+    ],
+  }
 });
