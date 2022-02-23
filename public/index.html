@@ -9,16 +9,43 @@
 </head>
 
 <body>
-  <script crossorigin="anonymous"
-    integrity="sha512-dGQpe9Hb1dXjYT7TSrTS6qnRmzrhY9wsyRtN6BR2R+XgiXf5cpgvWVGPWptrarkfoldzpIkl7adWEddhoKsX6A=="
-    src="https://lib.baomitu.com/systemjs/6.8.3/system.min.js"></script>
+
   <script type="systemjs-importmap">
     {
       "imports": {
         "react": "https://lib.baomitu.com/react/17.0.2/umd/react.production.min.js",
-        "react-dom": "https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.production.min.js"
+        "react-dom": "https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.production.min.js",
+        "react-router-dom": "https://lib.baomitu.com/react-router-dom/5.3.0/react-router-dom.min.js",
+        "single-spa": "https://lib.baomitu.com/single-spa/5.9.3/umd/single-spa.min.js",
+        "lodash": "https://lib.baomitu.com/lodash.js/4.17.21/lodash.min.js",
+        "moment": "https://lib.baomitu.com/moment.js/2.29.1/moment.min.js"
       }
     }
+  </script>
+
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@root": "/root.js"
+      }
+    }
+  </script>
+
+  <script crossorigin="anonymous"
+    integrity="sha512-dGQpe9Hb1dXjYT7TSrTS6qnRmzrhY9wsyRtN6BR2R+XgiXf5cpgvWVGPWptrarkfoldzpIkl7adWEddhoKsX6A=="
+    src="https://lib.baomitu.com/systemjs/6.8.3/system.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-mf4/y3IroNfkl20Brygdc+tb4a38MrEmU+VTSyMaqlsZhfVHCdHniA//HEgETGlJptSSCPv72Dy6kXB+OHiGAQ=="
+    src="https://lib.baomitu.com/systemjs/6.8.3/extras/named-exports.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-Ahpc6VqzcdPS1xTuBGdnw+l64Iz6KNXAy/4/1bBzAv6nTl+NK7mnYHMDtI8wAzd2PTV9GVNURwKf87y36eWZ+g=="
+    src="https://lib.baomitu.com/systemjs/6.8.3/extras/use-default.min.js"></script>
+  <script crossorigin="anonymous"
+    integrity="sha512-fRfysEnVm90UgqFUsB+UlgnHK5vvSnsl64hxHaJJl4wE+P1sTwDUuQGmohtg/CSK60mY5A4elesW6UWQdLQsAg=="
+    src="https://lib.baomitu.com/systemjs/6.8.3/extras/amd.min.js"></script>
+
+  <script>
+    System.import('@root');
   </script>
 
   <div id="react-content"></div>

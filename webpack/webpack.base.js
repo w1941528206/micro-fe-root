@@ -18,9 +18,18 @@ module.exports = {
     path: path.resolve(__dirname, '../dist'),
     publicPath: "/",
     filename: '[name].js',
+    library: pkgJson.systemName,
+    libraryTarget: 'amd'
   },
   devtool: 'source-map',
-  // externals: ['react', 'react-dom'],
+  externals: [
+    'react',
+    'react-dom',
+    'react-router-dom',
+    'single-spa',
+    'lodash',
+    'moment'
+  ],
   module: {
     rules: [
       {

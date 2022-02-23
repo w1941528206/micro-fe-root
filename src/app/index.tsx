@@ -70,9 +70,7 @@ const App = () => {
         </div>
       </Sider>
       <Layout>
-        <Header className={styles.header} style={{ padding: 0 }}>
-
-        </Header>
+        <Header className={styles.header} style={{ padding: 0 }} />
         <Content className={styles.content}>
           <div id="micro-project-content" />
         </Content>
